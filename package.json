@@ -1,0 +1,6 @@
+{
+  "name": "ai-visibility-audit-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Markdown-only skills for AI Visibility Audit by PromptScout"
+}

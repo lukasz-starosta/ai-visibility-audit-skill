@@ -1,0 +1,45 @@
+{
+  "auditVersion": "0.1",
+  "site": "https://example.com",
+  "generatedAt": "2026-04-09T00:00:00Z",
+  "summary": {
+    "status": "needs-work",
+    "sitewideBlockers": 2,
+    "repeatedPatternProblems": 2,
+    "pageLevelFindings": 3
+  },
+  "findings": [
+    {
+      "id": "robots-block-docs",
+      "severity": "high",
+      "type": "crawlability",
+      "scope": "sitewide",
+      "title": "Docs folder is disallowed in robots.txt for major AI user agents",
+      "evidence": [
+        "robots.txt disallows /docs/",
+        "12 documentation URLs are present in the sitemap but blocked from access"
+      ]
+    },
+    {
+      "id": "missing-faq-schema",
+      "severity": "medium",
+      "type": "structured-data",
+      "scope": "pattern",
+      "title": "Comparison pages lack FAQ or Q&A schema",
+      "evidence": [
+        "/compare/acme-vs-contoso",
+        "/compare/acme-vs-example"
+      ]
+    },
+    {
+      "id": "thin-answer-blocks",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "page",
+      "title": "Pricing page has weak extractable answers",
+      "evidence": [
+        "/pricing has one short paragraph and no structured question headings"
+      ]
+    }
+  ]
+}

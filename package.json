@@ -1,0 +1,11 @@
+{
+  "name": "promptscout-ai-visibility-audit-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Markdown-only skills for AI Visibility Audit by PromptScout",
+  "scripts": {
+    "check": "node scripts/check-doc-links.mjs && node scripts/check-examples.mjs",
+    "check:docs": "node scripts/check-doc-links.mjs",
+    "check:examples": "node scripts/check-examples.mjs"
+  }
+}

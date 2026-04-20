@@ -1,7 +1,8 @@
 # AI Visibility Audit by PromptScout
 
-Public contract files, fixtures, and skills for reviewing AI visibility audit
-artifacts and turning them into concrete remediation work.
+Public contract files, fixtures, canonical Agent Skills sources, and generated
+client wrappers for reviewing AI visibility audit artifacts and turning them
+into concrete remediation work.
 
 This repo is intentionally dependency-free. It does not contain the private
 PromptScout audit runtime or the future public CLI or MCP wrappers. It is
@@ -14,6 +15,11 @@ designed for:
 - optional CLI-assisted runs when the CLI is already available
 
 ## Included skills
+
+### Canonical Agent Skills sources
+
+- `skills/ai-visibility-audit/SKILL.md`
+- `skills/ai-visibility-audit-remediation/SKILL.md`
 
 ### Codex
 
@@ -75,7 +81,8 @@ tab v2 already uses grouped semantics as the canonical contract.
 
 ## Boundary
 
-This repo is the public contract, fixtures, and skills surface.
+This repo is the public contract, fixtures, canonical skills, and generated
+client wrapper surface.
 
 - private runtime stays in PromptScout internals
 - the public CLI should live in its own wrapper repo

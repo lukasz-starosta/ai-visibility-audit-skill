@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- add canonical `skills/` sources plus generated Codex and Claude wrappers to
+  reduce cross-client drift
+- add skill wrapper generation and drift checks for cross-client packaging
 - add machine-readable audit, remediation, and manifest schemas plus a
   manifest-driven fixture matrix for downstream wrappers
 - add semantic contract validation and regression tests for report and

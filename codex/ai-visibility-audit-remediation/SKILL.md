@@ -11,21 +11,24 @@ plan rather than another summary.
 
 ## Workflow
 
-1. Read the structured artifact first when available.
-2. Group work into distinct buckets:
+1. If the input is an `audit-manifest.json`, resolve the structured audit
+   report from the bundle first.
+2. Read the structured artifact first when available.
+3. Group work into distinct buckets:
    - crawl and access blockers
    - repeated template or rendering diagnosis groups
    - core-page structure and schema fixes
    - stale or thin-page upgrades
    - low-value discovered URL handling
    - missing page-type or prompt-coverage gaps
-3. For each bucket, produce:
+4. For each bucket, produce:
    - why it matters
    - affected pages or counts
    - the smallest next change set
    - whether the fix is technical, content, or both
-4. Collapse duplicate findings into one action item with all affected evidence.
-5. If several pages expose the same JS-shell symptom, produce one rendering root-cause action item with all affected pages instead of page-by-page tasks.
+5. Collapse duplicate findings into one action item with all affected evidence.
+6. If several pages expose the same JS-shell symptom, produce one rendering
+   root-cause action item with all affected pages instead of page-by-page tasks.
 
 ## Guardrails
 

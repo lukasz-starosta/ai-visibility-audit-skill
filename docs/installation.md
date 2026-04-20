@@ -35,5 +35,6 @@ cp claude/ai-visibility-audit-remediation/SKILL.md ~/.claude/skills/ai-visibilit
 
 - the skills work without Python or extra dependencies
 - the skills prefer existing audit artifacts
+- the preferred artifact entry point is `audit-manifest.json` when a bundle includes one
 - the sample prompts live in [usage.md](usage.md)
 - when the CLI is already available, the skills may use it as an optional helper

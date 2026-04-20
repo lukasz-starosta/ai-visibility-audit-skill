@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../contracts/audit-manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "bundleName": "prompt-coverage-present",
+  "site": "https://coverage.example.com",
+  "generatedAt": "2026-04-10T04:00:00Z",
+  "contract": {
+    "auditReport": "1.0.0"
+  },
+  "artifacts": {
+    "auditReportJson": "report.json"
+  },
+  "notes": [
+    "Bundle with prompt-aware evidence so prompt coverage can be handled as a separate layer."
+  ]
+}

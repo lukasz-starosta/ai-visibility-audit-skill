@@ -4,6 +4,7 @@ import path from "node:path";
 const repoRoot = process.cwd();
 const docsToCheck = [
   "README.md",
+  "docs/contracts.md",
   "docs/installation.md",
   "docs/parity-gap.md",
   "docs/usage.md",

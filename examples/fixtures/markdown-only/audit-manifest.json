@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../contracts/audit-manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "bundleName": "markdown-only",
+  "site": "https://markdown-only.example.com",
+  "generatedAt": "2026-04-10T02:00:00Z",
+  "artifacts": {
+    "auditReportMarkdown": "report.md"
+  },
+  "notes": [
+    "Markdown-only bundle for older exports and manual review workflows."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "../../contracts/audit-manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "bundleName": "sample-audit",
+  "site": "https://example.com",
+  "generatedAt": "2026-04-09T00:00:00Z",
+  "contract": {
+    "auditReport": "1.0.0",
+    "remediationPlan": "1.0.0"
+  },
+  "artifacts": {
+    "auditReportJson": "report.json",
+    "auditReportMarkdown": "report.md",
+    "remediationPlanJson": "remediation-plan.json",
+    "remediationPlanMarkdown": "remediation-plan.md"
+  },
+  "notes": [
+    "Full reference bundle with grouped diagnoses, markdown outputs, and a machine-readable remediation plan."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../contracts/audit-manifest.schema.json",
+  "manifestVersion": "1.0.0",
+  "bundleName": "noisy-discovered-urls",
+  "site": "https://noise.example.com",
+  "generatedAt": "2026-04-10T03:00:00Z",
+  "contract": {
+    "auditReport": "1.0.0"
+  },
+  "artifacts": {
+    "auditReportJson": "report.json"
+  },
+  "notes": [
+    "Bundle where discovered URLs are noisy, but the narrative should still keep them down-ranked."
+  ]
+}

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- add machine-readable audit, remediation, and manifest schemas plus a
+  manifest-driven fixture matrix for downstream wrappers
+- add semantic contract validation and regression tests for report and
+  remediation invariants
+- reposition the repo as the public contract/examples/skills layer for future
+  CLI and MCP wrappers
 - refresh audit and remediation skill prompts for grouped diagnoses, core-page
   failures, and down-ranked discovered URL noise
 - add grouped sample artifacts and a public parity-gap note aligned with Website

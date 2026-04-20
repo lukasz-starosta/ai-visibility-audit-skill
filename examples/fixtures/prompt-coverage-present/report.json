@@ -1,0 +1,72 @@
+{
+  "$schema": "../../../contracts/audit-report.schema.json",
+  "auditVersion": "1.0.0",
+  "site": "https://coverage.example.com",
+  "generatedAt": "2026-04-10T04:00:00Z",
+  "summary": {
+    "status": "needs-work",
+    "sitewideBlockers": 1,
+    "diagnosisGroups": 0,
+    "repeatedPatternProblems": 1,
+    "corePageFailures": 1,
+    "lowValueNoiseFindings": 0
+  },
+  "diagnosisGroups": [],
+  "findings": [
+    {
+      "id": "robots-block-docs",
+      "severity": "high",
+      "type": "crawlability",
+      "scope": "sitewide",
+      "title": "Docs folder is disallowed in robots.txt",
+      "evidence": [
+        "robots.txt disallows /docs/"
+      ]
+    },
+    {
+      "id": "comparison-dense-prose",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "pattern",
+      "title": "Comparison pages rely on dense prose instead of question-led answer sections",
+      "evidence": [
+        "/compare/widget-vs-rival uses long prose blocks instead of direct answers"
+      ]
+    },
+    {
+      "id": "thin-pricing-page",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "page",
+      "title": "Pricing page exposes thin answer text",
+      "evidence": [
+        "/pricing contains one short paragraph and no question-led sections"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Prompt monitoring is present, but citation logs were sampled rather than exhaustively exported."
+  ],
+  "nextActions": [
+    "Treat prompt coverage as a separate prioritization layer after the crawl blocker is fixed."
+  ],
+  "promptCoverage": {
+    "summary": "Prompt-aware evidence shows strong owned-page coverage for pricing questions but missing support for integration setup prompts.",
+    "categories": [
+      {
+        "category": "pricing-questions",
+        "status": "partial",
+        "ownedPages": [
+          "/pricing"
+        ],
+        "notes": "Owned pages are cited, but the page still lacks strong answer-shaped structure."
+      },
+      {
+        "category": "integration-setup",
+        "status": "missing",
+        "ownedPages": [],
+        "notes": "No reliable owned page was cited for setup prompts in the monitored sample."
+      }
+    ]
+  }
+}

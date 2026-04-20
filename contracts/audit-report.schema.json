@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptscout.com/schemas/ai-visibility-audit/audit-report.schema.json",
+  "title": "AI Visibility Audit Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "auditVersion",
+    "site",
+    "generatedAt",
+    "summary",
+    "diagnosisGroups",
+    "findings",
+    "unknowns",
+    "nextActions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "auditVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "site": {
+      "type": "string",
+      "format": "uri"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "sitewideBlockers",
+        "diagnosisGroups",
+        "repeatedPatternProblems",
+        "corePageFailures",
+        "lowValueNoiseFindings"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "healthy",
+            "needs-work"
+          ]
+        },
+        "sitewideBlockers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "diagnosisGroups": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repeatedPatternProblems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corePageFailures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lowValueNoiseFindings": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "diagnosisGroups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnosisGroup"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "promptCoverage": {
+      "$ref": "#/$defs/promptCoverage"
+    }
+  },
+  "$defs": {
+    "severity": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "diagnosisGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "scope",
+        "title",
+        "affectedPages",
+        "whyGrouped"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "scope": {
+          "const": "group"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "affectedPages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "whyGrouped": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "type",
+        "scope",
+        "title",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "narrativeSeverity": {
+          "enum": [
+            "down-ranked",
+            "optional"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "enum": [
+            "sitewide",
+            "pattern",
+            "page",
+            "discovered-url"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "promptCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "categories"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "category",
+              "status",
+              "ownedPages",
+              "notes"
+            ],
+            "properties": {
+              "category": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "strong",
+                  "partial",
+                  "missing"
+                ]
+              },
+              "ownedPages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notes": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

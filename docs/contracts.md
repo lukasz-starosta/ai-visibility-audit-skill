@@ -13,6 +13,9 @@ It is intended to be consumed by:
 The private PromptScout runtime remains elsewhere. Downstream wrappers should
 reuse these public artifact contracts instead of re-defining audit semantics.
 
+See [mcp-wrapper-v1.md](mcp-wrapper-v1.md) for the implementation-ready spec for
+the separate MCP repo.
+
 ## Canonical Files
 
 - `contracts/audit-manifest.schema.json`

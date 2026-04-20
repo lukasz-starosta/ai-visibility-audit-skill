@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- add an implementation-ready MCP wrapper v1 design package for the future
+  separate MCP repo
 - add canonical `skills/` sources plus generated Codex and Claude wrappers to
   reduce cross-client drift
 - add skill wrapper generation and drift checks for cross-client packaging

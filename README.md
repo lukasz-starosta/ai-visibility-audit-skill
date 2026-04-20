@@ -60,6 +60,7 @@ Expected outputs are illustrated in:
 - install: [docs/installation.md](docs/installation.md)
 - usage: [docs/usage.md](docs/usage.md)
 - contracts: [docs/contracts.md](docs/contracts.md)
+- mcp wrapper v1: [docs/mcp-wrapper-v1.md](docs/mcp-wrapper-v1.md)
 - parity gap: [docs/parity-gap.md](docs/parity-gap.md)
 - contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 - security: [SECURITY.md](SECURITY.md)

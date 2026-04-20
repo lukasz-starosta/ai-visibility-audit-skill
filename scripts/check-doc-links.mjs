@@ -6,6 +6,7 @@ const docsToCheck = [
   "README.md",
   "docs/contracts.md",
   "docs/installation.md",
+  "docs/mcp-wrapper-v1.md",
   "docs/parity-gap.md",
   "docs/usage.md",
   "CONTRIBUTING.md",

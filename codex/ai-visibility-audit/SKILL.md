@@ -1,29 +1,32 @@
 ---
 name: ai-visibility-audit
-description: Review AI Visibility Audit artifacts deeply, separate sitewide blockers, repeated template patterns, core-page failures, and low-value URL noise, and keep conclusions aligned with the PromptScout Website-tab contract.
+description: Review AI Visibility Audit artifacts deeply, separate sitewide blockers, repeated template patterns, core-page failures, and low-value URL noise, and stay aligned with the PromptScout Website Audit v2 contract.
 allowed-tools: Read, Grep, Glob, Bash
 ---
 
 # AI Visibility Audit by PromptScout
 
-Use this skill when the user wants a deep review of existing audit artifacts for
-crawlability, structure, schema, freshness, and citation-readiness.
+Use this skill to review existing AI Visibility Audit bundles and artifacts for
+crawlability, structure, schema, freshness, citation-readiness, and
+prompt-aware coverage when present.
 
 ## Preferred workflow
 
 1. Prefer existing artifacts in this order:
+   - bundle manifest (`audit-manifest.json`)
    - structured JSON
    - Markdown report
    - compact summary
-2. If one artifact path is given, look for adjacent siblings with the same base
-   name such as `.json`, `.md`, and `.txt`.
-3. Build the review in clearly separated sections:
+2. If one artifact path is given, first look for an adjacent
+   `audit-manifest.json`. If none exists, look for adjacent siblings with the
+   same base name such as `.json`, `.md`, and `.txt`.
+3. Organize the review into:
    - sitewide blockers
    - diagnosis groups when multiple findings share one root cause
    - repeated template-pattern problems
    - core-page failures and evidence
    - low-value discovered URL noise
-   - prompt coverage or content-shape gaps when present in the artifact
+   - prompt coverage or content-shape gaps when present
    - unknowns or missing evidence
    - next actions
 4. Link every accessible local artifact path you reference.

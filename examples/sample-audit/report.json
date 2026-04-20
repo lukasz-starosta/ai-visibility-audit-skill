@@ -5,9 +5,36 @@
   "summary": {
     "status": "needs-work",
     "sitewideBlockers": 2,
+    "diagnosisGroups": 2,
     "repeatedPatternProblems": 2,
-    "pageLevelFindings": 3
+    "corePageFailures": 3,
+    "lowValueNoiseFindings": 3
   },
+  "diagnosisGroups": [
+    {
+      "id": "js-shell-core-pages",
+      "severity": "high",
+      "scope": "group",
+      "title": "Core product pages appear to ship a thin JS-rendered shell before hydration",
+      "affectedPages": [
+        "/pricing",
+        "/product/ai-monitoring",
+        "/product/competitors"
+      ],
+      "whyGrouped": "The HTML shape is nearly identical across the affected core pages, suggesting one rendering pipeline issue rather than isolated page defects."
+    },
+    {
+      "id": "comparison-template-answer-gap",
+      "severity": "medium",
+      "scope": "group",
+      "title": "Comparison templates miss extractable verdict structure and FAQ schema",
+      "affectedPages": [
+        "/compare/acme-vs-contoso",
+        "/compare/acme-vs-example"
+      ],
+      "whyGrouped": "The same template omits the verdict block and schema on multiple pages."
+    }
+  ],
   "findings": [
     {
       "id": "robots-block-docs",
@@ -18,6 +45,17 @@
       "evidence": [
         "robots.txt disallows /docs/",
         "12 documentation URLs are present in the sitemap but blocked from access"
+      ]
+    },
+    {
+      "id": "canonical-drift-docs",
+      "severity": "medium",
+      "type": "canonical",
+      "scope": "sitewide",
+      "title": "Localized docs pages point at inconsistent canonical targets",
+      "evidence": [
+        "/docs/setup?lang=en canonicals to /docs/setup",
+        "/docs/setup?lang=de canonicals to /de/docs/setup while other variants do not"
       ]
     },
     {
@@ -36,9 +74,64 @@
       "severity": "medium",
       "type": "content-shape",
       "scope": "page",
-      "title": "Pricing page has weak extractable answers",
+      "title": "Pricing page has weak extractable answers and a thin pre-hydration shell",
       "evidence": [
         "/pricing has one short paragraph and no structured question headings"
+      ]
+    },
+    {
+      "id": "stale-docs-setup",
+      "severity": "medium",
+      "type": "freshness",
+      "scope": "page",
+      "title": "Setup docs page is stale on a core onboarding path",
+      "evidence": [
+        "/docs/setup still shows outdated screenshots and an old Last updated date"
+      ]
+    },
+    {
+      "id": "cdn-cgi-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Cloudflare challenge route was discovered during the crawl",
+      "evidence": [
+        "/_cdn-cgi/challenge-platform/... surfaced in crawl results"
+      ]
+    },
+    {
+      "id": "checkout-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Cart and checkout URLs were discovered from legacy navigation links",
+      "evidence": [
+        "/cart",
+        "/checkout"
+      ]
+    },
+    {
+      "id": "legacy-url-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Legacy pricing URL should be treated as cleanup noise unless it still ranks",
+      "evidence": [
+        "/pricing-2023"
+      ]
+    },
+    {
+      "id": "missing-llms-txt",
+      "severity": "low",
+      "narrativeSeverity": "optional",
+      "type": "optional-signal",
+      "scope": "sitewide",
+      "title": "llms.txt is absent",
+      "evidence": [
+        "No llms.txt file was included in the artifact set"
       ]
     }
   ]

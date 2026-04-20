@@ -1,6 +1,6 @@
 ---
 name: ai-visibility-audit
-description: Review AI Visibility Audit artifacts deeply, separate sitewide blockers from page evidence, and keep conclusions aligned with the PromptScout Website-tab contract.
+description: Review AI Visibility Audit artifacts deeply, separate sitewide blockers, repeated template patterns, core-page failures, and low-value URL noise, and keep conclusions aligned with the PromptScout Website-tab contract.
 allowed-tools: Read, Grep, Glob, Bash
 ---
 
@@ -19,8 +19,10 @@ crawlability, structure, schema, freshness, and citation-readiness.
    name such as `.json`, `.md`, and `.txt`.
 3. Build the review in clearly separated sections:
    - sitewide blockers
-   - repeated page-pattern problems
-   - page-level evidence and examples
+   - diagnosis groups when multiple findings share one root cause
+   - repeated template-pattern problems
+   - core-page failures and evidence
+   - low-value discovered URL noise
    - prompt coverage or content-shape gaps when present in the artifact
    - unknowns or missing evidence
    - next actions
@@ -38,8 +40,11 @@ dependencies.
 
 - lead with the highest-impact deterministic blockers first
 - keep sitewide findings separate from prompt-coverage or page-level findings
+- keep repeated template failures separate from core-page failures
 - do not repeat the same finding in multiple sections unless new evidence is added
 - quote concrete URLs, finding counts, page titles, and evidence snippets when available
+- if multiple core pages show the same thin JS shell or near-empty HTML behavior, group them as one diagnosis instead of narrating page-by-page severity first
+- down-rank utility routes and low-value discovered URLs such as `cdn-cgi`, cart, checkout, and stale legacy URLs unless they clearly affect core pages or crawl rules
 - if prompt-aware coverage exists, treat it as a separate layer from crawl or page-structure failures
 - do not invent flagship-only heuristics outside the shared audit contract
-- do not pitch `llms.txt` as a headline lever
+- treat missing `llms.txt` as optional and low-priority, not a critical blocker

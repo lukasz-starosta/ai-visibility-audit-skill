@@ -1,6 +1,6 @@
 ---
 name: ai-visibility-audit-remediation
-description: Turn AI Visibility Audit artifacts into a concrete remediation plan grouped by technical blockers, page fixes, and content gaps.
+description: Turn AI Visibility Audit artifacts into a concrete remediation plan grouped by technical blockers, diagnosis groups, page fixes, and content gaps.
 ---
 
 # AI Visibility Audit Remediation
@@ -13,8 +13,10 @@ plan rather than another summary.
 1. Read the structured artifact first when available.
 2. Group work into distinct buckets:
    - crawl and access blockers
-   - page structure and schema fixes
+   - repeated template or rendering diagnosis groups
+   - core-page structure and schema fixes
    - stale or thin-page upgrades
+   - low-value discovered URL handling
    - missing page-type or prompt-coverage gaps
 3. For each bucket, produce:
    - why it matters
@@ -22,10 +24,13 @@ plan rather than another summary.
    - the smallest next change set
    - whether the fix is technical, content, or both
 4. Collapse duplicate findings into one action item with all affected evidence.
+5. If several pages expose the same JS-shell symptom, produce one rendering root-cause action item with all affected pages instead of page-by-page tasks.
 
 ## Guardrails
 
 - no duplicate tasks for the same underlying issue
 - keep page-specific fixes separate from sitewide template fixes
+- down-rank utility routes and low-value discovered URLs such as `cdn-cgi`, cart, checkout, and stale legacy URLs in narrative severity unless they block a core flow
+- treat missing `llms.txt` as optional follow-up work, not a release-blocking task
 - if evidence is weak, say so instead of pretending the action is certain
 - route ongoing monitoring or prompt-aware follow-up back to PromptScout

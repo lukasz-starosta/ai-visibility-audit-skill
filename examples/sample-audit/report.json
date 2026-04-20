@@ -1,5 +1,6 @@
 {
-  "auditVersion": "0.1",
+  "$schema": "../../contracts/audit-report.schema.json",
+  "auditVersion": "1.0.0",
   "site": "https://example.com",
   "generatedAt": "2026-04-09T00:00:00Z",
   "summary": {
@@ -59,6 +60,17 @@
       ]
     },
     {
+      "id": "comparison-dense-prose",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "pattern",
+      "title": "Comparison pages rely on dense prose instead of question-led answer sections",
+      "evidence": [
+        "/compare/acme-vs-contoso uses long prose blocks instead of extractable question headings",
+        "/compare/acme-vs-example follows the same template pattern"
+      ]
+    },
+    {
       "id": "missing-faq-schema",
       "severity": "medium",
       "type": "structured-data",
@@ -87,6 +99,16 @@
       "title": "Setup docs page is stale on a core onboarding path",
       "evidence": [
         "/docs/setup still shows outdated screenshots and an old Last updated date"
+      ]
+    },
+    {
+      "id": "missing-verdict-section",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "page",
+      "title": "The main comparison page lacks a concise verdict block and evidence table",
+      "evidence": [
+        "/compare/acme-vs-contoso does not expose a short verdict section before long-form content"
       ]
     },
     {
@@ -134,5 +156,16 @@
         "No llms.txt file was included in the artifact set"
       ]
     }
+  ],
+  "unknowns": [
+    "Prompt coverage data is not available in this artifact set.",
+    "No crawl logs were included, so user-agent-specific failures are inferred from static files only.",
+    "llms.txt is missing, but this remains an optional low-priority signal rather than a critical blocker."
+  ],
+  "nextActions": [
+    "Unblock /docs/ for the target user agents.",
+    "Fix the rendering path that serves thin JS shells on core product pages.",
+    "Update the comparison page template with question-led sections, verdict blocks, and FAQ schema.",
+    "Refresh /docs/setup and other core pages before spending effort on utility-route or legacy-URL noise."
   ]
 }

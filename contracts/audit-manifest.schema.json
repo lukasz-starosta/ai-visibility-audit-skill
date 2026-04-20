@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://promptscout.com/schemas/ai-visibility-audit/audit-manifest.schema.json",
+  "title": "AI Visibility Audit Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifestVersion",
+    "bundleName",
+    "site",
+    "generatedAt",
+    "artifacts"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "manifestVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "bundleName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "site": {
+      "type": "string",
+      "format": "uri"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auditReport": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "remediationPlan": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auditReportJson": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "auditReportMarkdown": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "remediationPlanJson": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "remediationPlanMarkdown": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "compactSummaryText": {
+          "$ref": "#/$defs/relativePath"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "auditReportJson"
+          ]
+        },
+        {
+          "required": [
+            "auditReportMarkdown"
+          ]
+        }
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*\\.\\.).+"
+    }
+  }
+}

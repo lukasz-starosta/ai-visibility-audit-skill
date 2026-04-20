@@ -1,0 +1,76 @@
+{
+  "$schema": "../../../contracts/audit-report.schema.json",
+  "auditVersion": "1.0.0",
+  "site": "https://noise.example.com",
+  "generatedAt": "2026-04-10T03:00:00Z",
+  "summary": {
+    "status": "needs-work",
+    "sitewideBlockers": 1,
+    "diagnosisGroups": 0,
+    "repeatedPatternProblems": 0,
+    "corePageFailures": 1,
+    "lowValueNoiseFindings": 3
+  },
+  "diagnosisGroups": [],
+  "findings": [
+    {
+      "id": "robots-block-docs",
+      "severity": "high",
+      "type": "crawlability",
+      "scope": "sitewide",
+      "title": "Docs folder is disallowed in robots.txt",
+      "evidence": [
+        "robots.txt disallows /docs/"
+      ]
+    },
+    {
+      "id": "stale-pricing-copy",
+      "severity": "medium",
+      "type": "freshness",
+      "scope": "page",
+      "title": "Pricing page still references a deprecated plan name",
+      "evidence": [
+        "/pricing still mentions the retired Pro Plus tier"
+      ]
+    },
+    {
+      "id": "cdn-cgi-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Cloudflare challenge route was discovered",
+      "evidence": [
+        "/_cdn-cgi/challenge-platform/..."
+      ]
+    },
+    {
+      "id": "checkout-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Legacy checkout URLs were discovered",
+      "evidence": [
+        "/checkout"
+      ]
+    },
+    {
+      "id": "preview-noise",
+      "severity": "low",
+      "narrativeSeverity": "down-ranked",
+      "type": "noise",
+      "scope": "discovered-url",
+      "title": "Preview URLs surfaced in crawl results",
+      "evidence": [
+        "/preview/campaign-spring-2025"
+      ]
+    }
+  ],
+  "unknowns": [
+    "External ranking data was not included, so legacy noise remains down-ranked by default."
+  ],
+  "nextActions": [
+    "Fix the docs crawl blocker and stale pricing copy before spending time on noisy discovered URLs."
+  ]
+}

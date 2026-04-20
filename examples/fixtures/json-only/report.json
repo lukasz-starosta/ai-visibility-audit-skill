@@ -1,0 +1,44 @@
+{
+  "$schema": "../../../contracts/audit-report.schema.json",
+  "auditVersion": "1.0.0",
+  "site": "https://json-only.example.com",
+  "generatedAt": "2026-04-10T01:00:00Z",
+  "summary": {
+    "status": "needs-work",
+    "sitewideBlockers": 1,
+    "diagnosisGroups": 0,
+    "repeatedPatternProblems": 0,
+    "corePageFailures": 1,
+    "lowValueNoiseFindings": 0
+  },
+  "diagnosisGroups": [],
+  "findings": [
+    {
+      "id": "robots-block-blog",
+      "severity": "high",
+      "type": "crawlability",
+      "scope": "sitewide",
+      "title": "Blog URLs are blocked in robots.txt",
+      "evidence": [
+        "robots.txt disallows /blog/",
+        "8 blog URLs appear in the sitemap but return blocked crawl signals"
+      ]
+    },
+    {
+      "id": "thin-pricing-page",
+      "severity": "medium",
+      "type": "content-shape",
+      "scope": "page",
+      "title": "Pricing page exposes thin answer text",
+      "evidence": [
+        "/pricing contains one short paragraph and no question-led sections"
+      ]
+    }
+  ],
+  "unknowns": [
+    "No markdown report was exported with this bundle."
+  ],
+  "nextActions": [
+    "Unblock the blog path for target crawlers and revisit the pricing page answer structure."
+  ]
+}

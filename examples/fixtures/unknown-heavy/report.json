@@ -1,0 +1,36 @@
+{
+  "$schema": "../../../contracts/audit-report.schema.json",
+  "auditVersion": "1.0.0",
+  "site": "https://unknowns.example.com",
+  "generatedAt": "2026-04-10T05:00:00Z",
+  "summary": {
+    "status": "needs-work",
+    "sitewideBlockers": 0,
+    "diagnosisGroups": 0,
+    "repeatedPatternProblems": 0,
+    "corePageFailures": 1,
+    "lowValueNoiseFindings": 0
+  },
+  "diagnosisGroups": [],
+  "findings": [
+    {
+      "id": "stale-docs-home",
+      "severity": "medium",
+      "type": "freshness",
+      "scope": "page",
+      "title": "Docs home page appears stale",
+      "evidence": [
+        "/docs references an old feature name in the visible page copy"
+      ]
+    }
+  ],
+  "unknowns": [
+    "No crawl logs were included.",
+    "No sitemap snapshot was included.",
+    "No prompt coverage export was included.",
+    "Robots and canonicals were inferred from a partial static capture rather than a full crawl."
+  ],
+  "nextActions": [
+    "Request a richer export bundle before opening broad technical remediation work."
+  ]
+}

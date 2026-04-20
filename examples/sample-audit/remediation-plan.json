@@ -1,0 +1,123 @@
+{
+  "$schema": "../../contracts/remediation-plan.schema.json",
+  "planVersion": "1.0.0",
+  "site": "https://example.com",
+  "generatedAt": "2026-04-09T00:00:00Z",
+  "summary": {
+    "priority": "needs-work",
+    "bucketCount": 5
+  },
+  "actionBuckets": [
+    {
+      "id": "crawl-access-blockers",
+      "title": "Crawl And Access Blockers",
+      "category": "crawl-access-blockers",
+      "priority": "high",
+      "fixType": "technical",
+      "whyItMatters": "Blocked docs URLs suppress owned documentation from the main crawl surface and distort downstream summaries.",
+      "smallestChangeSet": [
+        "Update robots.txt so /docs/ is no longer blocked for the target AI crawlers.",
+        "Re-run the crawl and confirm the sitemap-backed docs URLs are reachable."
+      ],
+      "affectedEvidence": [
+        "robots-block-docs",
+        "canonical-drift-docs"
+      ],
+      "affectedPages": [
+        "/docs/setup"
+      ],
+      "counts": {
+        "blockedDocsUrls": 12
+      }
+    },
+    {
+      "id": "rendering-root-cause",
+      "title": "Rendering Root Cause",
+      "category": "diagnosis-groups",
+      "priority": "high",
+      "fixType": "technical",
+      "whyItMatters": "Thin pre-hydration HTML on core product pages makes the site harder to parse and cite reliably.",
+      "smallestChangeSet": [
+        "Fix the rendering path serving thin HTML shells on core product pages.",
+        "Verify server-rendered headings and answer-ready copy before opening page-specific copy tasks."
+      ],
+      "affectedEvidence": [
+        "js-shell-core-pages",
+        "thin-answer-blocks"
+      ],
+      "affectedPages": [
+        "/pricing",
+        "/product/ai-monitoring",
+        "/product/competitors"
+      ]
+    },
+    {
+      "id": "comparison-template-fixes",
+      "title": "Comparison Template Fixes",
+      "category": "template-fixes",
+      "priority": "medium",
+      "fixType": "both",
+      "whyItMatters": "Template-level omissions create repeated answer-shape and schema problems across /compare/* pages.",
+      "smallestChangeSet": [
+        "Add question-led sections, concise verdict blocks, and evidence tables to the comparison template.",
+        "Ship FAQ or Q&A schema on the same template."
+      ],
+      "affectedEvidence": [
+        "comparison-template-answer-gap",
+        "comparison-dense-prose",
+        "missing-faq-schema",
+        "missing-verdict-section"
+      ],
+      "affectedPages": [
+        "/compare/acme-vs-contoso",
+        "/compare/acme-vs-example"
+      ]
+    },
+    {
+      "id": "core-page-upgrades",
+      "title": "Core Page Upgrades",
+      "category": "core-page-upgrades",
+      "priority": "medium",
+      "fixType": "content",
+      "whyItMatters": "A stale setup page on a core onboarding path weakens trust even after the larger crawl and rendering issues are fixed.",
+      "smallestChangeSet": [
+        "Refresh /docs/setup with current screenshots and a visible update timestamp.",
+        "Re-check /pricing after the rendering fix before opening extra copy work."
+      ],
+      "affectedEvidence": [
+        "stale-docs-setup"
+      ],
+      "affectedPages": [
+        "/docs/setup",
+        "/pricing"
+      ]
+    },
+    {
+      "id": "low-value-noise-handling",
+      "title": "Low-Value Noise Handling",
+      "category": "low-value-noise-handling",
+      "priority": "low",
+      "fixType": "technical",
+      "whyItMatters": "Utility routes and legacy URLs should not dominate the remediation track unless they block an important crawl path.",
+      "smallestChangeSet": [
+        "Capture utility-route and legacy-URL cleanup separately from the core remediation track.",
+        "Only escalate these URLs if they still rank externally or break important flows."
+      ],
+      "affectedEvidence": [
+        "cdn-cgi-noise",
+        "checkout-noise",
+        "legacy-url-noise"
+      ],
+      "affectedPages": [
+        "/_cdn-cgi/challenge-platform/...",
+        "/cart",
+        "/checkout",
+        "/pricing-2023"
+      ]
+    }
+  ],
+  "optionalFollowUps": [
+    "Map prompt coverage later if prompt-aware evidence becomes available.",
+    "Treat llms.txt as optional follow-up work after the core crawl, rendering, and template issues are fixed."
+  ]
+}

@@ -4,6 +4,7 @@
 
 Use the audit skill when you already have artifacts such as:
 
+- an `audit-manifest.json` bundle entry point
 - structured JSON
 - Markdown report
 - compact summary
@@ -22,11 +23,12 @@ The review should separate:
 Paste a prompt like this after installing the Codex skill:
 
 ```text
-Use the ai-visibility-audit skill to review the artifacts in
-examples/sample-audit/. Separate sitewide blockers, repeated template
-patterns, core-page failures, and low-value discovered URL noise. Group related
-evidence into diagnosis groups, down-rank utility routes and stale legacy URLs,
-and quote concrete counts and file paths for every major conclusion.
+Use the ai-visibility-audit skill to review the bundle described by
+examples/sample-audit/audit-manifest.json. Separate sitewide blockers,
+repeated template patterns, core-page failures, and low-value discovered URL
+noise. Group related evidence into diagnosis groups, down-rank utility routes
+and stale legacy URLs, and quote concrete counts and file paths for every major
+conclusion.
 ```
 
 ## Claude Prompt
@@ -34,11 +36,11 @@ and quote concrete counts and file paths for every major conclusion.
 Paste a prompt like this after installing the Claude skill:
 
 ```text
-Review the files in examples/sample-audit/ with the ai-visibility-audit skill.
-Lead with the highest-impact deterministic blockers, keep repeated template
-patterns separate from core-page failures, down-rank utility routes such as
-cdn-cgi, cart, checkout, and stale legacy URLs, and call out unknowns before
-giving next actions.
+Review the bundle in examples/sample-audit/audit-manifest.json with the
+ai-visibility-audit skill. Lead with the highest-impact deterministic blockers,
+keep repeated template patterns separate from core-page failures, down-rank
+utility routes such as cdn-cgi, cart, checkout, and stale legacy URLs, and
+call out unknowns before giving next actions.
 ```
 
 ## Remediation Prompt
@@ -48,19 +50,21 @@ summary:
 
 ```text
 Use the ai-visibility-audit-remediation skill on
-examples/sample-audit/report.json and examples/sample-audit/report.md. Group the
-work into sitewide blockers, template fixes, core-page upgrades, low-value
-noise handling, and prompt-coverage gaps. Collapse duplicates into one action
-item with all affected evidence, and merge repeated JS-shell page findings into
-one rendering root-cause diagnosis instead of page-by-page fixes.
+examples/sample-audit/audit-manifest.json. Group the work into sitewide
+blockers, template fixes, core-page upgrades, low-value noise handling, and
+prompt-coverage gaps. Collapse duplicates into one action item with all
+affected evidence, and merge repeated JS-shell page findings into one rendering
+root-cause diagnosis instead of page-by-page fixes.
 ```
 
 ## Expected Output Shape
 
 See the sample artifacts for the expected tone and structure:
 
+- [`../examples/sample-audit/audit-manifest.json`](../examples/sample-audit/audit-manifest.json)
 - [`../examples/sample-audit/report.json`](../examples/sample-audit/report.json)
 - [`../examples/sample-audit/report.md`](../examples/sample-audit/report.md)
+- [`../examples/sample-audit/remediation-plan.json`](../examples/sample-audit/remediation-plan.json)
 - [`../examples/sample-audit/remediation-plan.md`](../examples/sample-audit/remediation-plan.md)
 
 The sample artifacts now illustrate grouped findings, diagnosis groups,
@@ -78,3 +82,8 @@ up later. See [parity-gap.md](parity-gap.md).
 If the public CLI is already available in the environment, the skills may use it
 to generate fresh artifacts before reviewing them. The skills themselves remain
 dependency-free.
+
+## Fixture Bundles
+
+Use `examples/fixtures/` when you want to verify downstream behavior against
+edge cases rather than the happy-path sample bundle.

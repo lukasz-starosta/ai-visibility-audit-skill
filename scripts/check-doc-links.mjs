@@ -5,6 +5,7 @@ const repoRoot = process.cwd();
 const docsToCheck = [
   "README.md",
   "docs/installation.md",
+  "docs/parity-gap.md",
   "docs/usage.md",
   "CONTRIBUTING.md",
   "SECURITY.md",

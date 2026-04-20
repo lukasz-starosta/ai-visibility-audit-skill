@@ -32,9 +32,10 @@ PromptScout audit runtime or the future public CLI wrapper. It is designed for:
 
 ```text
 Use the ai-visibility-audit skill to review the artifacts in
-examples/sample-audit/. Separate sitewide blockers, repeated page patterns,
-page-level evidence, unknowns, and next actions. Quote concrete counts and file
-paths.
+examples/sample-audit/. Separate sitewide blockers, repeated template
+patterns, core-page failures, and low-value discovered URL noise. Group related
+evidence into diagnosis groups, down-rank utility or stale legacy URLs, and
+quote concrete counts and file paths.
 ```
 
 Expected outputs are illustrated in:
@@ -47,9 +48,24 @@ Expected outputs are illustrated in:
 
 - install: [docs/installation.md](docs/installation.md)
 - usage: [docs/usage.md](docs/usage.md)
+- parity gap: [docs/parity-gap.md](docs/parity-gap.md)
 - contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 - security: [SECURITY.md](SECURITY.md)
 - changelog: [CHANGELOG.md](CHANGELOG.md)
+
+## Current Semantics
+
+Public OSS artifacts should mirror the Website Audit v2 narrative contract:
+
+- lead with sitewide blockers and grouped diagnoses
+- separate repeated template issues from core-page failures
+- down-rank low-value discovered URL noise such as utility routes, `cdn-cgi`,
+  cart, checkout, and stale legacy URLs
+- treat `llms.txt` as optional and low-priority unless stronger evidence says it
+  matters for the current audit
+
+See [docs/parity-gap.md](docs/parity-gap.md) for the explicit note that Website
+tab v2 already uses grouped semantics as the canonical contract.
 
 ## Boundary
 
